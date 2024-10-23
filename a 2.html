@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Combo Box Operations</title>
+    <style>
+        /* Basic styling */
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        #selectedItemDisplay {
+            margin-top: 20px;
+            font-size: 1.2em;
+        }
+        input, button, select {
+            margin: 10px;
+            padding: 8px;
+            font-size: 1em;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Combo Box Operations</h2>
+
+    <!-- Input field for new item and Add/Remove buttons -->
+    <input type="text" id="newItemInput" placeholder="Enter new item">
+    <button onclick="addItem()">Add Item</button>
+    <button onclick="removeItem()">Remove Item</button>
+    
+    <br>
+    
+    <!-- Combo box (select element) -->
+    <select id="comboBox" onchange="displaySelectedItem()">
+        <option value="" disabled selected>Select an item</option>
+    </select>
+
+    <!-- Display the selected item -->
+    <div id="selectedItemDisplay"></div>
+
+    <script>
+        // Function to add a new item to the combo box
+        function addItem() {
+            const newItem = document.getElementById("newItemInput").value;
+            if (newItem) {
+                const comboBox = document.getElementById("comboBox");
+                const option = document.createElement("option");
+                option.text = newItem;
+                option.value = newItem;
+                comboBox.add(option);
+                document.getElementById("newItemInput").value = ""; // Clear the input field
+            } else {
+                alert("Please enter a valid item.");
+            }
+        }
+
+        // Function to remove the selected item from the combo box
+        function removeItem() {
+            const comboBox = document.getElementById("comboBox");
+            const selectedIndex = comboBox.selectedIndex;
+            if (selectedIndex > 0) { // Index 0 is the placeholder item
+                comboBox.remove(selectedIndex);
+                document.getElementById("selectedItemDisplay").textContent = ""; // Clear display
+            } else {
+                alert("Please select an item to remove.");
+            }
+        }
+
+        // Function to display the selected item
+        function displaySelectedItem() {
+            const comboBox = document.getElementById("comboBox");
+            const selectedItem = comboBox.options[comboBox.selectedIndex].text;
+            document.getElementById("selectedItemDisplay").textContent = "Selected Item: " + selectedItem;
+        }
+    </script>
+
+</body>
+</html>

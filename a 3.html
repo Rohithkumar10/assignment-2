@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>String Operations</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        textarea {
+            width: 300px;
+            height: 100px;
+            margin-top: 10px;
+        }
+        input, button {
+            margin: 10px;
+            padding: 8px;
+            font-size: 1em;
+        }
+        .results {
+            margin-top: 20px;
+            font-size: 1.2em;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Text Analyzer</h2>
+    
+    <!-- Text area for input -->
+    <textarea id="textInput" placeholder="Enter text here"></textarea>
+    <br>
+
+    <!-- Button to analyze the text -->
+    <button onclick="analyzeText()">Analyze Text</button>
+
+    <!-- Color pickers for background and text color -->
+    <label for="bgColorPicker">Background Color: </label>
+    <input type="color" id="bgColorPicker" onchange="changeBackgroundColor()">
+    
+    <label for="textColorPicker">Text Color: </label>
+    <input type="color" id="textColorPicker" onchange="changeTextColor()">
+    
+    <!-- Results display -->
+    <div class="results" id="resultsDisplay">
+        <p id="alphabetCount"></p>
+        <p id="digitCount"></p>
+        <p id="specialCharCount"></p>
+    </div>
+
+    <script>
+        // Function to analyze the text
+        function analyzeText() {
+            const text = document.getElementById("textInput").value;
+            let alphabetCount = 0;
+            let digitCount = 0;
+            let specialCharCount = 0;
+
+            // Loop through each character in the text
+            for (let i = 0; i < text.length; i++) {
+                const char = text[i];
+                if (/[a-zA-Z]/.test(char)) {
+                    alphabetCount++;
+                } else if (/\d/.test(char)) {
+                    digitCount++;
+                } else if (/[^a-zA-Z0-9\s]/.test(char)) { // Special characters
+                    specialCharCount++;
+                }
+            }
+
+            // Display the counts
+            document.getElementById("alphabetCount").textContent = "Alphabets: " + alphabetCount;
+            document.getElementById("digitCount").textContent = "Digits: " + digitCount;
+            document.getElementById("specialCharCount").textContent = "Special Characters: " + specialCharCount;
+        }
+
+        // Function to change background color of the text area
+        function changeBackgroundColor() {
+            const bgColor = document.getElementById("bgColorPicker").value;
+            document.getElementById("textInput").style.backgroundColor = bgColor;
+        }
+
+        // Function to change text color of the text area
+        function changeTextColor() {
+            const textColor = document.getElementById("textColorPicker").value;
+            document.getElementById("textInput").style.color = textColor;
+        }
+    </script>
+
+</body>
+</html>
+

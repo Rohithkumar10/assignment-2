@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 1em;
+            cursor: pointer;
+            margin: 20px;
+        }
+        #passwordDisplay {
+            font-size: 1.2em;
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Password Generator</h2>
+
+    <!-- Button to generate password -->
+    <button onclick="generatePassword()">Generate Password</button>
+
+    <!-- Display the generated password -->
+    <div id="passwordDisplay"></div>
+
+    <script>
+        // Function to generate a random password
+        function generatePassword() {
+            const uppercaseChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            const lowercaseChars = "abcdefghijklmnopqrstuvwxyz";
+            const digits = "0123456789";
+            const specialChars = "!@#$%^&*()_+[]{}|;:,.<>?";
+            const allChars = uppercaseChars + lowercaseChars + digits + specialChars;
+
+            let password = "";
+            // Ensure at least 2 uppercase letters
+            for (let i = 0; i < 2; i++) {
+                password += uppercaseChars.charAt(Math.floor(Math.random() * uppercaseChars.length));
+            }
+
+            // Ensure at least 1 digit
+            password += digits.charAt(Math.floor(Math.random() * digits.length));
+
+            // Fill the remaining characters
+            for (let i = password.length; i < 8; i++) {
+                password += allChars.charAt(Math.floor(Math.random() * allChars.length));
+            }
+
+            // Shuffle the password to randomize the character order
+            password = password.split('').sort(() => 0.5 - Math.random()).join('');
+
+            // Display the generated password
+            document.getElementById("passwordDisplay").textContent = "Generated Password: " + password;
+        }
+    </script>
+
+</body>
+</html>

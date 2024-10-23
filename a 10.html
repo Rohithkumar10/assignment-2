@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Date of Birth Validation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        input {
+            padding: 10px;
+            font-size: 1em;
+            margin: 20px;
+        }
+        #message {
+            font-size: 1.2em;
+            margin-top: 20px;
+            color: red;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Date of Birth Validation</h2>
+
+    <!-- Date of Birth input field -->
+    <input type="date" id="dob" value="2020-01-01" min="2000-01-01" max="2020-09-01">
+
+    <!-- Button to validate the date -->
+    <button onclick="validateDOB()">Validate DOB</button>
+
+    <!-- Message display -->
+    <div id="message"></div>
+
+    <script>
+        // Function to validate the Date of Birth
+        function validateDOB() {
+            const dobInput = document.getElementById("dob");
+            const dobValue = new Date(dobInput.value);
+            const minDate = new Date("2000-01-01");
+            const maxDate = new Date("2020-09-01");
+
+            // Check if the date is within the allowed range
+            if (dobValue >= minDate && dobValue <= maxDate) {
+                document.getElementById("message").textContent = "Date of Birth is valid.";
+                document.getElementById("message").style.color = "green";
+            } else {
+                document.getElementById("message").textContent = "Date of Birth must be between 01.01.2000 and 01.09.2020.";
+                document.getElementById("message").style.color = "red";
+            }
+        }
+    </script>
+
+</body>
+</html>

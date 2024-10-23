@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Table Operations</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 30px;
+        }
+        table {
+            width: 50%;
+            margin: 20px auto;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 10px;
+            border: 2px solid black;
+            text-align: center;
+        }
+        input, select {
+            margin: 10px;
+            padding: 8px;
+            font-size: 1em;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Table Operations</h2>
+
+    <!-- Combo box for border width selection -->
+    <label for="borderWidth">Border Width:</label>
+    <select id="borderWidth" onchange="changeBorderWidth()">
+        <option value="1">1px</option>
+        <option value="2">2px</option>
+        <option value="3">3px</option>
+        <option value="4">4px</option>
+        <option value="5">5px</option>
+    </select>
+
+    <!-- Color pickers for background and text color -->
+    <label for="bgColorPicker">Background Color:</label>
+    <input type="color" id="bgColorPicker" onchange="changeBackgroundColor()">
+
+    <label for="fgColorPicker">Text Color:</label>
+    <input type="color" id="fgColorPicker" onchange="changeTextColor()">
+
+    <!-- Combo box for text alignment -->
+    <label for="textAlign">Text Alignment:</label>
+    <select id="textAlign" onchange="changeTextAlignment()">
+        <option value="center">Center</option>
+        <option value="left">Left</option>
+        <option value="right">Right</option>
+    </select>
+
+    <!-- Table with content -->
+    <table id="contentTable">
+        <thead>
+            <tr>
+                <th>Item</th>
+                <th>Quantity</th>
+                <th>Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Apples</td>
+                <td>10</td>
+                <td>$5</td>
+            </tr>
+            <tr>
+                <td>Bananas</td>
+                <td>20</td>
+                <td>$10</td>
+            </tr>
+            <tr>
+                <td>Oranges</td>
+                <td>15</td>
+                <td>$7.5</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <script>
+        // Function to change the table border width
+        function changeBorderWidth() {
+            const borderWidth = document.getElementById("borderWidth").value;
+            const table = document.getElementById("contentTable");
+            table.style.borderWidth = borderWidth + "px";
+            const cells = table.getElementsByTagName("td");
+            for (let cell of cells) {
+                cell.style.borderWidth = borderWidth + "px";
+            }
+            const headers = table.getElementsByTagName("th");
+            for (let header of headers) {
+                header.style.borderWidth = borderWidth + "px";
+            }
+        }
+
+        // Function to change the background color of the table
+        function changeBackgroundColor() {
+            const bgColor = document.getElementById("bgColorPicker").value;
+            document.getElementById("contentTable").style.backgroundColor = bgColor;
+        }
+
+        // Function to change the text color of the table
+        function changeTextColor() {
+            const fgColor = document.getElementById("fgColorPicker").value;
+            document.getElementById("contentTable").style.color = fgColor;
+        }
+
+        // Function to change the text alignment in the table
+        function changeTextAlignment() {
+            const alignment = document.getElementById("textAlign").value;
+            const cells = document.querySelectorAll("#contentTable th, #contentTable td");
+            cells.forEach(cell => {
+                cell.style.textAlign = alignment;
+            });
+        }
+    </script>
+
+</body>
+</html>

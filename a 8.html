@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advertisement Banner</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 30px;
+        }
+        #adBanner {
+            width: 80%;
+            max-width: 600px;
+            height: 300px;
+            margin: 0 auto;
+            border: 2px solid black;
+            overflow: hidden;
+        }
+        img {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Advertisement Banner</h2>
+
+    <!-- Advertisement banner container -->
+    <div id="adBanner">
+        <img id="adImage" src="anniversary.jpj.jpg" alt="Advertisement 1">
+    </div>
+
+    <script>
+        // Array of advertisement image sources
+        const ads = [
+            "anniversary.jpj.jpg",  // Path to the first advertisement image
+            "anniversary.jpj.jpg",  // Path to the second advertisement image
+            "anniversary.jpj.jpg"   // Path to the third advertisement image
+        ];
+
+        let currentAdIndex = 0;
+
+        // Function to change the advertisement
+        function changeAd() {
+            currentAdIndex = (currentAdIndex + 1) % ads.length;
+            document.getElementById("adImage").src = ads[currentAdIndex];
+        }
+
+        // Change the advertisement every 3 seconds (3000 milliseconds)
+        setInterval(changeAd, 3000);
+    </script>
+
+</body>
+</html>

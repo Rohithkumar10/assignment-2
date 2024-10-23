@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Days Between Dates Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        input {
+            padding: 10px;
+            font-size: 1em;
+            margin: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 1em;
+            cursor: pointer;
+            margin: 20px;
+        }
+        #result {
+            font-size: 1.2em;
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Calculate Days Between Two Dates</h2>
+
+    <!-- Input fields for the two dates -->
+    <input type="date" id="startDate">
+    <input type="date" id="endDate">
+
+    <!-- Button to calculate days -->
+    <button onclick="calculateDays()">Calculate Days</button>
+
+    <!-- Display the result -->
+    <div id="result"></div>
+
+    <script>
+        // Function to calculate the number of days between two dates
+        function calculateDays() {
+            const startDateInput = document.getElementById("startDate").value;
+            const endDateInput = document.getElementById("endDate").value;
+
+            // Check if both dates are selected
+            if (!startDateInput || !endDateInput) {
+                document.getElementById("result").textContent = "Please select both dates.";
+                return;
+            }
+
+            // Create Date objects for both dates
+            const startDate = new Date(startDateInput);
+            const endDate = new Date(endDateInput);
+
+            // Calculate the difference in time
+            const timeDifference = endDate - startDate;
+
+            // Convert time difference from milliseconds to days
+            const daysDifference = Math.ceil(timeDifference / (1000 * 3600 * 24));
+
+            // Display the result
+            document.getElementById("result").textContent = Number of days between the two dates: ${daysDifference};
+        }
+    </script>
+
+</body>
+</html>

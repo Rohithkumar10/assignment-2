@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Year and Branch</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        input, button {
+            margin: 10px;
+            padding: 8px;
+            font-size: 1em;
+        }
+        #result {
+            margin-top: 20px;
+            font-size: 1.2em;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Student Roll Number Analysis</h2>
+
+    <!-- Textbox for entering the roll number -->
+    <input type="text" id="rollNumber" placeholder="Enter roll number (e.g., ES19CS01)">
+    <br>
+    
+    <!-- Button to analyze the roll number -->
+    <button onclick="analyzeRollNumber()">Analyze</button>
+
+    <!-- Display the result -->
+    <div id="result"></div>
+
+    <script>
+        // Function to analyze the roll number
+        function analyzeRollNumber() {
+            const rollNumber = document.getElementById("rollNumber").value.toUpperCase();
+            const currentYear = new Date().getFullYear();
+            let resultMessage = "";
+
+            // Regular expression to validate roll number format
+            const rollPattern = /^ES\d{2}(CS|EC|ME|EE|CE)\d{2}$/;
+
+            if (rollPattern.test(rollNumber)) {
+                // Extract year of admission and branch code
+                const admissionYear = parseInt("20" + rollNumber.substring(2, 4), 10);
+                const branchCode = rollNumber.substring(4, 6);
+
+                // Determine the year of study
+                const yearOfStudy = currentYear - admissionYear;
+
+                // Map branch codes to full branch names
+                const branchMap = {
+                    CS: "Computer Science and Engineering (CSE)",
+                    EC: "Electronics and Communication Engineering (ECE)",
+                    ME: "Mechanical Engineering (ME)",
+                    EE: "Electrical Engineering (EE)",
+                    CE: "Civil Engineering (CE)"
+                };
+
+                // Determine the year description based on the year of study
+                if (yearOfStudy === 4) {
+                    resultMessage = The student belongs to Final Year, ${branchMap[branchCode]}.;
+                } else if (yearOfStudy === 3) {
+                    resultMessage = The student belongs to Third Year, ${branchMap[branchCode]}.;
+                } else if (yearOfStudy === 2) {
+                    resultMessage = The student belongs to Second Year, ${branchMap[branchCode]}.;
+                } else if (yearOfStudy === 1) {
+                    resultMessage = The student belongs to First Year, ${branchMap[branchCode]}.;
+                } else {
+                    resultMessage = "The roll number does not correspond to a current student.";
+                }
+            } else {
+                resultMessage = "Invalid roll number format. Please enter a valid roll number (e.g., ES19CS01).";
+            }
+
+            // Display the result message
+            document.getElementById("result").textContent = resultMessage;
+        }
+    </script>
+
+</body>
+</html>
+
+
+
+

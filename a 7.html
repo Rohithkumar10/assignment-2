@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paragraph Operations</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 30px;
+        }
+        p {
+            margin-top: 20px;
+            font-size: 16px;
+        }
+        select, input {
+            margin: 10px;
+            padding: 8px;
+            font-size: 1em;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Paragraph Text Operations</h2>
+
+    <!-- Combo box for font type selection -->
+    <label for="fontType">Font Type:</label>
+    <select id="fontType" onchange="changeFontType()">
+        <option value="Arial">Arial</option>
+        <option value="Times New Roman">Times New Roman</option>
+        <option value="Courier New">Courier New</option>
+        <option value="Verdana">Verdana</option>
+        <option value="Georgia">Georgia</option>
+    </select>
+
+    <!-- Combo box for font size selection -->
+    <label for="fontSize">Font Size:</label>
+    <select id="fontSize" onchange="changeFontSize()">
+        <option value="12px">12px</option>
+        <option value="14px">14px</option>
+        <option value="16px">16px</option>
+        <option value="18px">18px</option>
+        <option value="20px">20px</option>
+        <option value="24px">24px</option>
+    </select>
+
+    <!-- Color picker for text color selection -->
+    <label for="textColor">Text Color:</label>
+    <input type="color" id="textColor" onchange="changeTextColor()">
+
+    <!-- Paragraph with sample text -->
+    <p id="paragraphText">This is a sample paragraph. You can change its font type, size, and color using the controls above.</p>
+
+    <script>
+        // Function to change the font type of the paragraph
+        function changeFontType() {
+            const fontType = document.getElementById("fontType").value;
+            document.getElementById("paragraphText").style.fontFamily = fontType;
+        }
+
+        // Function to change the font size of the paragraph
+        function changeFontSize() {
+            const fontSize = document.getElementById("fontSize").value;
+            document.getElementById("paragraphText").style.fontSize = fontSize;
+        }
+
+        // Function to change the text color of the paragraph
+        function changeTextColor() {
+            const textColor = document.getElementById("textColor").value;
+            document.getElementById("paragraphText").style.color = textColor;
+        }
+    </script>
+
+</body>
+</html
